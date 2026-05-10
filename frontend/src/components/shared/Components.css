@@ -139,4 +139,4 @@
 .push-body { font-size: 10px; color: var(--text2); line-height: 1.4; }
 
 /* ── send alert form ── */
-.alert-form { display: flex; flex-direction: column; gap: 8px; }
+.alert-form { display: flex; flex-direction: column; gap: 8px; }/* shared components styles */

@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 
-const WS_URL = 'ws://localhost:8000/ws/live'
+const API = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
+const WS_URL = (import.meta.env.VITE_WS_URL ?? 'ws://localhost:8000') + '/ws/live'
 
 const useStore = create((set, get) => ({
   // ── connection ──
@@ -62,101 +63,53 @@ const useStore = create((set, get) => ({
 
   // ── REST fetchers ──
   fetchCorridor: async () => {
-
-  try {
-
-    const res = await fetch(
-      'http://127.0.0.1:8000/api/corridor/'
-    )
-
-    const data = await res.json()
-
-    console.log('CORRIDOR API:', data)
-
-    set({
-      corridor: data
-    })
-
-  } catch (err) {
-
-    console.error('Corridor fetch failed:', err)
-
-  }
-},
+    try {
+      const res = await fetch(`${API}/api/corridor/`)
+      const data = await res.json()
+      console.log('CORRIDOR API:', data)
+      set({ corridor: data })
+    } catch (err) {
+      console.error('Corridor fetch failed:', err)
+    }
+  },
 
   fetchWeather: async () => {
-
-  try {
-
-    const res = await fetch(
-      'http://127.0.0.1:8000/api/weather/'
-    )
-
-    const data = await res.json()
-
-    console.log('WEATHER:', data)
-
-    set({
-      weather: data
-    })
-
-  } catch (err) {
-
-    console.error('Weather fetch failed:', err)
-
-  }
-},
+    try {
+      const res = await fetch(`${API}/api/weather/`)
+      const data = await res.json()
+      console.log('WEATHER:', data)
+      set({ weather: data })
+    } catch (err) {
+      console.error('Weather fetch failed:', err)
+    }
+  },
 
   fetchAlerts: async () => {
-
-  try {
-
-    const res = await fetch(
-      'http://127.0.0.1:8000/api/alerts/'
-    )
-
-    const data = await res.json()
-
-    set({
-      alertsData: data
-    })
-
-  } catch (err) {
-
-    console.error('Alerts fetch failed:', err)
-
-  }
-},
+    try {
+      const res = await fetch(`${API}/api/alerts/`)
+      const data = await res.json()
+      set({ alertsData: data })
+    } catch (err) {
+      console.error('Alerts fetch failed:', err)
+    }
+  },
 
   fetchSettings: async () => {
-  try {
-
-    const res = await fetch('http://127.0.0.1:8000/api/settings/')
-
-    const data = await res.json()
-
-    set({
-      settings: data.settings
-    })
-
-  } catch (err) {
-
-    console.error('Failed to fetch settings', err)
-
-  }
-},
+    try {
+      const res = await fetch(`${API}/api/settings/`)
+      const data = await res.json()
+      set({ settings: data.settings })
+    } catch (err) {
+      console.error('Failed to fetch settings', err)
+    }
+  },
 
   triggerEmergency: async () => {
-    await fetch(
-  'http://127.0.0.1:8000/api/junction/emergency',
-  {
-    method: 'POST'
-  }
-)
+    await fetch(`${API}/api/junction/emergency`, { method: 'POST' })
   },
 
   sendAlert: async (payload) => {
-    const res = await fetch('http://127.0.0.1:8000/api/alerts/send', {
+    const res = await fetch(`${API}/api/alerts/send`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
@@ -169,17 +122,15 @@ const useStore = create((set, get) => ({
   },
 
   updateSettings: async (newSettings) => {
-    const res = await fetch('http://127.0.0.1:8000/api/settings/', {
+    const res = await fetch(`${API}/api/settings/`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newSettings),
     })
     const data = await res.json()
     if (data.success) {
-  set({
-    settings: data.settings
-  })
-}
+      set({ settings: data.settings })
+    }
   },
 }))
 
