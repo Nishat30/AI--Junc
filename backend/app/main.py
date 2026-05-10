@@ -57,5 +57,5 @@ def root():
         "app": settings.APP_NAME,
         "version": settings.APP_VERSION,
         "docs": "/docs",
-        "ws": "ws://localhost:8000/ws/live",
+        "ws": "wss://ai-junc-backend.onrender.com/ws/live",
     }
