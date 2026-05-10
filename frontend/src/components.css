@@ -1,0 +1,142 @@
+/* ── Junction SVG ── */
+.junction-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.junction-svg { max-width: 270px; width: 100%; border-radius: 8px; overflow: hidden; }
+.phase-row { display: flex; gap: 14px; width: 100%; max-width: 270px; }
+.phase-col { flex: 1; }
+.lbl-sm { font-size: 11px; color: var(--text2); margin-bottom: 3px; }
+.phase-label { font-size: 13px; font-weight: 500; color: var(--text); }
+.countdown { font-size: 20px; font-weight: 500; color: var(--text); font-variant-numeric: tabular-nums; }
+.phase-bar { height: 7px; border-radius: 4px; width: 100%; background: var(--bg3); overflow: hidden; margin-top: 6px; }
+.phase-fill { height: 100%; border-radius: 4px; transition: width .5s linear, background .3s; }
+
+/* ── Emergency ── */
+.emer-panel {
+  border: 0.5px solid var(--border); border-radius: var(--radius);
+  padding: 10px 12px; display: flex; align-items: center; gap: 11px;
+}
+.emer-panel.act { border-color: var(--r); background: var(--rl); animation: fb 1s infinite; }
+@keyframes fb { 0%,100%{border-color:var(--r)} 50%{border-color:transparent} }
+.ei {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--r); display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0;
+}
+.ei i { font-size: 17px; color: white; }
+.et { font-size: 13px; font-weight: 500; color: var(--rd); }
+.es { font-size: 11px; color: var(--text2); margin-top: 2px; }
+
+/* ── Predictions ── */
+.predict-item { display: flex; align-items: center; gap: 9px; padding: 7px 0; border-bottom: 0.5px solid var(--border); }
+.predict-item:last-child { border-bottom: none; }
+.predict-pct { font-size: 15px; font-weight: 500; min-width: 38px; }
+.predict-pct.red   { color: var(--r); }
+.predict-pct.amber { color: var(--a); }
+.predict-pct.teal  { color: var(--t); }
+.predict-bar-wrap { flex: 1; height: 5px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+.predict-bar { height: 100%; border-radius: 3px; transition: width .8s; }
+.predict-lbl { font-size: 11px; color: var(--text2); min-width: 80px; text-align: right; }
+
+/* ── Alert items / Event log ── */
+.alert-item { display: flex; align-items: flex-start; gap: 9px; padding: 8px 0; border-bottom: 0.5px solid var(--border); }
+.alert-item:last-child { border-bottom: none; }
+.ai-icon { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ai-icon i { font-size: 13px; }
+.teal-bg { background: var(--tl); } .teal-bg i,.teal { color: var(--t); }
+.amber-bg { background: var(--al); } .amber-bg i,.amber { color: var(--a); }
+.red-bg   { background: var(--rl); } .red-bg i,.red     { color: var(--r); }
+.blue-bg  { background: var(--bl); } .blue-bg i,.blue   { color: var(--b); }
+.at  { font-size: 12px; color: var(--text); }
+.atm { font-size: 10px; color: var(--text2); margin-top: 2px; }
+
+/* ── Lane density table ── */
+.lane-table { width: 100%; border-collapse: collapse; font-size: 12px; table-layout: fixed; }
+.lane-table th {
+  text-align: left; padding: 3px 6px;
+  font-size: 11px; color: var(--text2); font-weight: 500;
+  border-bottom: 0.5px solid var(--border);
+}
+.lane-table td { padding: 7px 6px; }
+.density-bar { height: 5px; border-radius: 3px; transition: width .6s; }
+.blue      { background: var(--b); } 
+.teal-bar  { background: var(--t); }
+.amber-bar { background: var(--a); }
+.red-bar   { background: var(--r); }
+
+/* ── Camera feeds ── */
+.cam-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+@media (max-width: 600px) { .cam-grid { grid-template-columns: 1fr; } }
+.cam-feed { border-radius: var(--radius); border: 0.5px solid var(--border); overflow: hidden; }
+.cam-header {
+  background: var(--bg2); padding: 6px 10px;
+  font-size: 11px; color: var(--text2);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.cam-canvas-wrap { background: #1a1a1a; }
+.cam-canvas-wrap canvas { display: block; width: 100%; }
+
+/* ── YOLO log ── */
+.yolo-log { font-size: 11px; font-family: 'Courier New', monospace; }
+.yolo-log .yolo-entry { padding: 4px 0; border-bottom: 0.5px solid var(--border); color: var(--text2); }
+.yolo-log .yolo-entry:first-child { color: var(--t); font-weight: 500; }
+
+/* ── Corridor map ── */
+.corr-map-wrap {
+  position: relative; width: 100%; border-radius: var(--radius);
+  background: #e8e4dc; overflow: hidden; height: 300px;
+}
+.corr-map-wrap svg { position: absolute; top: 0; left: 0; }
+.corr-nodes { position: relative; width: 100%; height: 100%; }
+.jn-node { position: absolute; transform: translate(-50%, -50%); cursor: pointer; text-align: center; }
+.jn-node-dot {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid white; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 8px; font-weight: 600; color: white;
+  margin: 0 auto; transition: transform .2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,.25);
+}
+.jn-node-dot:hover { transform: scale(1.2); }
+.jn-node-label { font-size: 9px; font-weight: 500; white-space: nowrap; margin-top: 3px; color: #444; }
+.corr-legend { display: flex; gap: 14px; margin-top: 10px; flex-wrap: wrap; }
+.corr-legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text2); }
+.corr-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+/* ── Weather ── */
+.weather-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--border); }
+.weather-row:last-child { border-bottom: none; }
+.w-icon { width: 32px; height: 32px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.w-icon i { font-size: 18px; }
+.event-card { border: 0.5px solid var(--border); border-radius: var(--radius); padding: 10px 12px; margin-bottom: 8px; }
+.event-card:last-child { margin-bottom: 0; }
+.event-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+.event-title { font-size: 13px; font-weight: 500; color: var(--text); }
+.event-sub { font-size: 11px; color: var(--text2); margin-top: 2px; }
+.event-action { font-size: 12px; color: var(--text2); }
+.impact-bar { height: 5px; border-radius: 3px; background: var(--bg3); overflow: hidden; margin-top: 6px; }
+.impact-fill { height: 100%; border-radius: 3px; }
+
+/* ── Commuter alerts ── */
+.notif-item { border: 0.5px solid var(--border); border-radius: var(--radius); padding: 10px 12px; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 10px; }
+.notif-item:last-child { margin-bottom: 0; }
+.notif-item.unread { border-color: var(--b); }
+.notif-icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.notif-title { font-size: 12px; font-weight: 500; color: var(--text); }
+.notif-sub { font-size: 11px; color: var(--text2); margin-top: 2px; }
+
+/* ── Phone mockup ── */
+.phone-wrap { background: var(--bg2); border-radius: var(--radius-lg); padding: 14px; display: flex; justify-content: center; }
+.phone-frame { width: 220px; background: var(--bg); border-radius: 24px; border: 0.5px solid var(--border2); overflow: hidden; }
+.phone-status { background: #111; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+.phone-status span { font-size: 9px; color: #ccc; font-family: monospace; }
+.phone-notif { padding: 10px; }
+.push-notif { background: var(--bg2); border-radius: var(--radius); padding: 10px; margin-bottom: 8px; }
+.push-notif:last-child { margin-bottom: 0; }
+.push-header { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.push-app-dot { width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0; }
+.push-app { font-size: 9px; color: var(--text2); font-weight: 500; }
+.push-time { font-size: 9px; color: var(--text2); margin-left: auto; }
+.push-title { font-size: 11px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.push-body { font-size: 10px; color: var(--text2); line-height: 1.4; }
+
+/* ── send alert form ── */
+.alert-form { display: flex; flex-direction: column; gap: 8px; }
