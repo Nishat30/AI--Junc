@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import useStore from './store/useStore'
+import React from 'react'
+import useStore from './components/store/useStore'
 import TopBar from './components/shared/TopBar'
 import MetricsBar from './components/shared/MetricsBar'
 import NavTabs from './components/shared/NavTabs'
