@@ -1,0 +1,50 @@
+# ── Python / Backend ──────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+backend/venv/
+backend/.venv/
+
+# Environment variables (keep your secrets safe!)
+backend/.env
+
+# ML / data artifacts
+backend/data/*.csv
+backend/app/ml/*.pkl
+backend/app/ml/*.joblib
+backend/app/ml/*.model
+
+# ── Node / Frontend ───────────────────────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Frontend env files
+frontend/.env
+frontend/.env.local
+frontend/.env.production
+frontend/.env.*.local
+
+# ── Editors ───────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.sw?
+
+# ── OS ────────────────────────────────────────────────────────────────────────
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+*.log
+logs/
+npm-debug.log*
